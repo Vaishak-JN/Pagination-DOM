@@ -500,7 +500,7 @@ let data = [{
     }
 ];
 
-// Table
+// Creating the Table
 let div1=document.createElement("div")
 div1.setAttribute("id","div1")
 
@@ -527,66 +527,79 @@ div1.appendChild(table)
 document.body.appendChild(div1)
 
 
-// create the buttons
+// Creating the buttons
 
 let div2=document.createElement("div")
 div2.setAttribute("id","div2")
 
+// first button
 let first=document.createElement("button")
 first.innerText="First"
 div2.appendChild(first)
 
+// previous button
 let prev=document.createElement("button")
 prev.innerText="Previous"
 div2.appendChild(prev)
 
+// btn 1
 let btn1=document.createElement("button")
 btn1.innerText="1"
 div2.appendChild(btn1)
 btn1.setAttribute("class","num")
 
+// btn 2
 let btn2=document.createElement("button")
 btn2.innerText="2"
 div2.appendChild(btn2)
 btn2.setAttribute("class","num")
 
+// btn 3
 let btn3=document.createElement("button")
 btn3.innerText="3"
 div2.appendChild(btn3)
 btn3.setAttribute("class","num")
 
+// btn 4
 let btn4=document.createElement("button")
 btn4.innerText="4"
 div2.appendChild(btn4)
 btn4.setAttribute("class","num")
 
+// btn 5
 let btn5=document.createElement("button")
 btn5.innerText="5"
 div2.appendChild(btn5)
 btn5.setAttribute("class","num")
 
+// nest button
 let next=document.createElement("button")
 next.innerText="Next"
 div2.appendChild(next)
 
+// last button
 let last=document.createElement("button")
 last.innerText="Last"
 div2.appendChild(last)
 
 document.body.append(div2)
 
-// set the number of rows
+// seting the number of rows
 const rows=10;
+// declare and set page value
 let page=0;
 // get total number of buttons
 const totalbtns=Math.ceil(data.length/rows)
 
 console.log(totalbtns)
 
+// creating an array of keys
+let arr=["id","name","email"]
+
 // first button function
 
 first.addEventListener("click",()=>{
-    // 
+    
     if(page==1){
         alert("You are already on the first page")
     }else{
@@ -595,12 +608,11 @@ first.addEventListener("click",()=>{
         btn3.innerText="3"
         btn4.innerText="4"
         btn5.innerText="5"
-
         page=parseInt(btn1.innerText)
     }
 
     tb.innerHTML=""
-    let n=+btn1.innerText
+    let n=page
     for(var i=n*rows-rows;i<n*rows;i++){
         let newtr=document.createElement("tr")
         for(var j=0;j<arr.length;j++){
@@ -612,7 +624,7 @@ first.addEventListener("click",()=>{
         tb.appendChild(newtr)
     }
     btn1.focus()
-    page=1
+    // page=1
     console.log(page)
 })
 
@@ -627,19 +639,18 @@ prev.addEventListener("click",()=>{
         btn3.innerText=parseInt(btn3.innerText)-1;
         btn4.innerText=parseInt(btn4.innerText)-1;
         btn5.innerText=parseInt(btn5.innerText)-1;
-
         page=page-1
     }else{
         alert("This is the first page!")
     }
     
-
     tb.innerHTML=""
     let n=page
     if(n>=1){
 
         // Alternate method 
         // here create a reverse array of keys
+
         // let newarr=["email","name","id"]
         // for(var i=n*rows-rows;i<n*rows;i++){
         //     let newtr=document.createElement("tr")
@@ -652,7 +663,7 @@ prev.addEventListener("click",()=>{
         //     tb.appendChild(newtr)
 
 
-            for(var i=n*rows-rows;i<n*rows;i++){
+        for(var i=n*rows-rows;i<n*rows;i++){
                 let newtr=document.createElement("tr")
                 for(var j=0;j<arr.length;j++){
                     let newtd=document.createElement("td")
@@ -660,7 +671,7 @@ prev.addEventListener("click",()=>{
                     newtr.append(newtd)
                 }
                 // let tab=document.getElementById("tab")
-                tb.appendChild(newtr)
+                tb.appendChild(newtr)    
         }
     }else{
         alert("You are already on the first page!")
@@ -725,8 +736,11 @@ next.addEventListener("click",()=>{
     }
 })
 
+
+// last button function
+
 last.addEventListener("click",()=>{
-    if((btn5.innerText==totalbtns) && (page=totalbtns)){
+    if((btn5.innerText==totalbtns) && (page==totalbtns)){
         alert("This is the last page!!!")
     }else{
         btn1.innerText=totalbtns-4;
@@ -752,9 +766,6 @@ last.addEventListener("click",()=>{
     page=10
     console.log(page)
 })
-
-// creating an array of keys
-let arr=["id","name","email"]
 
 
 btn1.addEventListener("click",()=>{
